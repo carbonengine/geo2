@@ -1,2 +1,5 @@
 ownermails:
   - evetechartautomation@ccpgames.com
+testing:
+  binaries:
+    - DLL_IMAGETOOLS
