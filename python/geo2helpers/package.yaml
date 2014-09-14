@@ -2,4 +2,4 @@ ownermails:
   - evetechartautomation@ccpgames.com
 testing:
   binaries:
-    - DLL_IMAGETOOLS
+    - DLL_GEO2
