@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <limits>
 #include <cstdint>
+#include <cmath>
 
 // Function wrappers.... lots of them
 #define VectorFunArgV( XMFUNC, PYFUNC, MINSIZE, RETURNSIZE ) \
@@ -2761,7 +2762,7 @@ PyObject* RayToPlaneIntersection( PyObject* module, PyObject* args )
 	}
 
 	float denom = XMVectorGetX( XMVector3Dot( p3, p1 ) );
-	if( abs( denom ) < std::numeric_limits<float>::epsilon() )
+	if( std::abs( denom ) < std::numeric_limits<float>::epsilon() )
 	{
 		Py_INCREF(Py_None);
 		return Py_None;
