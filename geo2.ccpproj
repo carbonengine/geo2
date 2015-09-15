@@ -70,6 +70,16 @@ Configurations:
       TargetName: $(ProjectName)
       TargetExt: .pyd
 
+  Release|Mac64:
+    Imports:
+    - ../stackless/stackless.yaml
+    - ../CcpMath/uses_CcpMath.yaml
+    - geo2_release.yaml
+    General:
+      OutDir: ../../autobuild/$(ProjectName)/exefile/$(Platform)/$(PlatformToolset)/
+      TargetName: $(ProjectName)
+      TargetExt: .dll
+
   Release_27|Mac64,Linux32,Linux64:
     Imports:
     - ../../../../../../sdk/python/Python_2.7.yaml
