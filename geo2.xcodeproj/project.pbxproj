@@ -179,7 +179,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				GCC_OPTIMIZATION_LEVEL = s;
 				ONLY_ACTIVE_ARCH = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -196,6 +196,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"CCP_STACKLESS=1",
 					"BLUE_WITH_PYTHON=1",
+					"PyMODINIT_FUNC=\"__attribute((visibility(\\\"default\\\"))) extern \\\"C\\\" void\"",
 					NDEBUG,
 					"$(inherited)",
 					);
@@ -364,7 +365,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				GCC_OPTIMIZATION_LEVEL = s;
 				ONLY_ACTIVE_ARCH = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -379,6 +380,7 @@
 				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"BLUE_WITH_PYTHON=1",
+					"PyMODINIT_FUNC=\"__attribute((visibility(\\\"default\\\"))) extern \\\"C\\\" void\"",
 					NDEBUG,
 					"$(inherited)",
 					);
