@@ -3985,7 +3985,7 @@ static PyMethodDef native_methods[] = {
 	{"MatrixAffineTransformation",	(PyCFunction) MatrixAffineTransformation, METH_VARARGS, 
 		"Builds a 3D affine transformation matrix. NULL arguments are treated as identity transformations."
 		"\n:param scaling: scaling factor"
-		"\n:type sclaing: float"
+		"\n:type scaling: float"
 		"\n:param rotationCenter: (3tuple)the center of rotation"
 		"\n:type rotationCenter: (float, float, float)"
 		"\n:param rotation: (4tuple)the rotation as a quaternion"
