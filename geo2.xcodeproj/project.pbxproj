@@ -191,6 +191,7 @@
 					);
 				SYMROOT = "../../autobuild/geo2/exefile/MacOsX$(ARCHS)/clang4.2";
 				OBJROOT = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).so";
 				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -376,6 +377,7 @@
 					);
 				SYMROOT = "../../autobuild/geo2/python_27/MacOsX$(ARCHS)/clang4.2";
 				OBJROOT = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).so";
 				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
