@@ -2,7 +2,7 @@ import unittest
 
 import geo2helpers
 
-from . import MATRIX_16, MATRIX_4x4
+from geo2helpers.test import MATRIX_16, MATRIX_4x4
 
 
 class TestGeo2(unittest.TestCase):
