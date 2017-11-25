@@ -1,7 +1,7 @@
 ProjectGuid: B80D66F8-1E1E-4253-AE83-DA5D4C9484AF
 
 Imports:
-- ../core_project.yaml
+- ../core_project/core_project.yaml
 - ../manifests/manifests.props
 
 # Settings from the General section, for all configurations
