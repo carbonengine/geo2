@@ -24,7 +24,7 @@ Link:
 Configurations:
   Debug|Win32,x64:
     Imports:
-    - ../stackless/stackless.yaml
+    - ../stackless/Include/stackless.yaml
     - ../../../../../../sdk/directx/february2010/directx_february2010.yaml
     General: 
       OutDir: ../../autobuild/$(ProjectName)/exefile/$(Platform)/
@@ -42,7 +42,7 @@ Configurations:
 
   Release|Win32,x64:
     Imports:
-    - ../stackless/stackless.yaml
+    - ../stackless/Include/stackless.yaml
     - geo2_release.yaml
     - ../../../../../../sdk/directx/february2010/directx_february2010.yaml
     General:
@@ -72,7 +72,7 @@ Configurations:
 
   Release|Mac64:
     Imports:
-    - ../stackless/stackless.yaml
+    - ../stackless/Include/stackless.yaml
     - ../CcpMath/uses_CcpMath.yaml
     - geo2_release.yaml
     General:
