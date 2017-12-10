@@ -52,7 +52,7 @@ Configurations:
 
   Release_26|Win32,x64:
     Imports:
-    - ../../../../../../sdk/python/Python_2.6.yaml
+    - ../../../../../../sdk/python/ccpproj/Python_2.6.yaml
     - geo2_release.yaml
     - ../../../../../../sdk/directx/february2010/directx_february2010.yaml
     General:
@@ -62,7 +62,7 @@ Configurations:
 
   Release_27|Win32,x64:
     Imports:
-    - ../../../../../../sdk/python/Python_2.7.yaml
+    - ../../../../../../sdk/python/ccpproj/Python_2.7.yaml
     - geo2_release.yaml
     - ../../../../../../sdk/directx/february2010/directx_february2010.yaml
     General:
@@ -82,7 +82,7 @@ Configurations:
 
   Release_27|Mac64,Linux32,Linux64:
     Imports:
-    - ../../../../../../sdk/python/Python_2.7.yaml
+    - ../../../../../../sdk/python/ccpproj/Python_2.7.yaml
     - ../CcpMath/uses_CcpMath.yaml
     - geo2_release.yaml
     General:
