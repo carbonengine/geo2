@@ -1,16 +1,10 @@
 #pragma once
 #ifndef Util_h
 #define Util_h
+
+#include "CcpMath/include/CcpMath.h"
 #include "Vector.h"
 
-#ifdef _WIN32
-#define NOMINMAX
-#include <Windows.h>
-#include <xnamath.h>
-#else
-#include "CcpMath/include/xnamath.h"
-#include "CcpMath/include/Plane.h"
-#endif
 
 template <class T> bool GetRealValue( PyObject* item, T* result )
 {
