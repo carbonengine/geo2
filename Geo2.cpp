@@ -1,12 +1,5 @@
 
-#ifdef _WIN32
-#define NOMINMAX
-#include <Windows.h>
-#include <xnamath.h>
-#else
-#include "CcpMath/include/xnamath.h"
-#include "CcpMath/include/Plane.h"
-#endif
+#include "CcpMath/include/CcpMath.h"
 #include <Python.h>
 #include "Vector.h"
 #include "Util.h"
