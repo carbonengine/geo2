@@ -59,7 +59,6 @@
 			sourceTree = "<group>";
 			children = (
 				000000160000ac3adf3e75bd,
-				000000180000ac3adf3e75bd,
 				000000140000ac3adf3e75bd,
 				000000180000ac3adf3e75bd,
 				);
@@ -159,11 +158,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					"../../../carbon/src/stackless/include",
-					"../../../carbon/src/stackless/stackless",
-					"../../../carbon/src/stackless/Mac",
-					.,
 					"../../../carbon/src",
+					"../../../carbon/src/stackless/stackless",
+					.,
+					"../../../carbon/src/stackless/Mac",
+					"../../../carbon/src/stackless/include",
 					);
 				CLANG_WARN_INT_CONVERSION = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -176,7 +175,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				GCC_OPTIMIZATION_LEVEL = s;
 				ONLY_ACTIVE_ARCH = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -185,8 +184,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				LIBRARY_SEARCH_PATHS = (
-					"../../../carbon/autobuild/stackless/MacOsX$(ARCHS)",
 					"../../../carbon/bin/stackless/MacOsX$(ARCHS)",
+					"../../../carbon/autobuild/stackless/MacOsX$(ARCHS)",
 					"../../../carbon/autobuild/CcpMath/MacOsX$(ARCHS)/clang4.2/",
 					);
 				SYMROOT = "../../autobuild/geo2/exefile/MacOsX$(ARCHS)/clang4.2";
@@ -195,18 +194,19 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).so";
 				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"CCP_STACKLESS=1",
-					"BLUE_WITH_PYTHON=1",
 					"PyMODINIT_FUNC=\"__attribute((visibility(\\\"default\\\"))) extern \\\"C\\\" void\"",
+					"BLUE_WITH_PYTHON=1",
+					"CCP_STACKLESS=1",
 					NDEBUG,
 					"$(inherited)",
 					);
 				COPY_PHASE_STRIP = NO;
 				CLANG_CXX_LIBRARY = "libc++";
 				EXECUTABLE_EXTENSION = so;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				SDKROOT = macosx;
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				WARNING_CFLAGS = "-Wno-nonportable-include-path -Wno-inconsistent-missing-override";
 				};
 			name = Release;
 			};
@@ -348,9 +348,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
+					"../../../carbon/src",
 					"../../../../../../shared_tools/python/27_mac/include/python2.7",
 					.,
-					"../../../carbon/src",
 					);
 				CLANG_WARN_INT_CONVERSION = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -363,7 +363,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				GCC_OPTIMIZATION_LEVEL = s;
 				ONLY_ACTIVE_ARCH = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -381,17 +381,18 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).so";
 				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BLUE_WITH_PYTHON=1",
 					"PyMODINIT_FUNC=\"__attribute((visibility(\\\"default\\\"))) extern \\\"C\\\" void\"",
+					"BLUE_WITH_PYTHON=1",
 					NDEBUG,
 					"$(inherited)",
 					);
 				COPY_PHASE_STRIP = NO;
 				CLANG_CXX_LIBRARY = "libc++";
 				EXECUTABLE_EXTENSION = so;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				SDKROOT = macosx;
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				WARNING_CFLAGS = "-Wno-nonportable-include-path -Wno-inconsistent-missing-override";
 				};
 			name = Release;
 			};
