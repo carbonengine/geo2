@@ -27,7 +27,7 @@ Configurations:
     Imports:
     - ../stackless/Include/stackless.yaml
     General: 
-      OutDir: ../../autobuild/$(ProjectName)/exefile/$(Platform)/
+      OutDir: ../../autobuild/$(ProjectName)/exefile/$(Platform)/$(PlatformToolset)/
       TargetName: $(ProjectName)_d
       TargetExt: .dll
       LinkIncremental: true
@@ -45,7 +45,7 @@ Configurations:
     - ../stackless/Include/stackless.yaml
     - geo2_release.yaml
     General:
-      OutDir: ../../autobuild/$(ProjectName)/exefile/$(Platform)/
+      OutDir: ../../autobuild/$(ProjectName)/exefile/$(Platform)/$(PlatformToolset)/
       TargetName: $(ProjectName)
       TargetExt: .dll
 
@@ -54,7 +54,7 @@ Configurations:
     - ../../../../../../sdk/python/ccpproj/Python_2.6.yaml
     - geo2_release.yaml
     General:
-      OutDir: ../../autobuild/$(ProjectName)/python_26/$(Platform)/
+      OutDir: ../../autobuild/$(ProjectName)/python_26/$(Platform)/$(PlatformToolset)/
       TargetName: $(ProjectName)
       TargetExt: .pyd
 
@@ -63,7 +63,7 @@ Configurations:
     - ../../../../../../sdk/python/ccpproj/Python_2.7.yaml
     - geo2_release.yaml
     General:
-      OutDir: ../../autobuild/$(ProjectName)/python_27/$(Platform)/
+      OutDir: ../../autobuild/$(ProjectName)/python_27/$(Platform)/$(PlatformToolset)/
       TargetName: $(ProjectName)
       TargetExt: .pyd
 
