@@ -196,7 +196,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>True</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform)\$(PlatformToolset);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <AdditionalDependencies>CcpMath_d.lib;python27_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -246,7 +246,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>True</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform)\$(PlatformToolset);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <AdditionalDependencies>CcpMath.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -321,7 +321,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>True</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform)\$(PlatformToolset);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <AdditionalDependencies>CcpMath_d.lib;python27_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -371,7 +371,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>True</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\carbon\autobuild\stackless\$(Platform)\$(PlatformToolset);../../../carbon/autobuild/CcpMath/$(Platform)/$(PlatformToolset)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <AdditionalDependencies>CcpMath.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
