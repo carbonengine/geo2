@@ -185,14 +185,14 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"../../../carbon/bin/stackless/MacOsX$(ARCHS)",
-					"../../../carbon/autobuild/stackless/MacOsX$(ARCHS)",
+					"../../../carbon/autobuild/stackless/MacOsX$(ARCHS)/clang4.2",
 					"../../../carbon/autobuild/CcpMath/MacOsX$(ARCHS)/clang4.2/",
 					);
 				SYMROOT = "../../autobuild/geo2/exefile/MacOsX$(ARCHS)/clang4.2";
-				OBJROOT = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
+				OBJROOT = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)/clang4.2";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).so";
-				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)/clang4.2";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"PyMODINIT_FUNC=\"__attribute((visibility(\\\"default\\\"))) extern \\\"C\\\" void\"",
 					"BLUE_WITH_PYTHON=1",
@@ -206,7 +206,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-nonportable-include-path -Wno-inconsistent-missing-override -Wno-deprecated-register";
+				WARNING_CFLAGS = "-Wno-nonportable-include-path -Wno-inconsistent-missing-override -Wno-deprecated-register -Wno-pragma-pack";
 				};
 			name = Release;
 			};
@@ -376,10 +376,10 @@
 					"../../../carbon/autobuild/CcpMath/MacOsX$(ARCHS)/clang4.2/",
 					);
 				SYMROOT = "../../autobuild/geo2/python_27/MacOsX$(ARCHS)/clang4.2";
-				OBJROOT = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
+				OBJROOT = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)/clang4.2";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(PRODUCT_NAME).so";
-				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)";
+				CONFIGURATION_TEMP_DIR = "../../autobuild/temp/geo2/MacOsX$(ARCHS)/$(CONFIGURATION)/clang4.2";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"PyMODINIT_FUNC=\"__attribute((visibility(\\\"default\\\"))) extern \\\"C\\\" void\"",
 					"BLUE_WITH_PYTHON=1",
@@ -392,7 +392,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-nonportable-include-path -Wno-inconsistent-missing-override -Wno-deprecated-register";
+				WARNING_CFLAGS = "-Wno-nonportable-include-path -Wno-inconsistent-missing-override -Wno-deprecated-register -Wno-pragma-pack";
 				};
 			name = Release;
 			};
