@@ -51,7 +51,7 @@ Configurations:
 
   Release_26|Win32,x64:
     Imports:
-    - ../../../../../../sdk/python/ccpproj/Python_2.6.yaml
+    - ../../../vendor/python/ccpproj/Python_2.6.yaml
     - geo2_release.yaml
     General:
       OutDir: ../../autobuild/$(ProjectName)/python_26/$(Platform)/$(PlatformToolset)/
@@ -60,7 +60,7 @@ Configurations:
 
   Release_27|Win32,x64:
     Imports:
-    - ../../../../../../sdk/python/ccpproj/Python_2.7.yaml
+    - ../../../vendor/python/ccpproj/Python_2.7.yaml
     - geo2_release.yaml
     General:
       OutDir: ../../autobuild/$(ProjectName)/python_27/$(Platform)/$(PlatformToolset)/
@@ -78,7 +78,7 @@ Configurations:
 
   Release_27|Mac64,Linux32,Linux64:
     Imports:
-    - ../../../../../../sdk/python/ccpproj/Python_2.7.yaml
+    - ../../../vendor/python/ccpproj/Python_2.7.yaml
     - geo2_release.yaml
     General:
       OutDir: ../../autobuild/$(ProjectName)/python_27/$(Platform)/$(PlatformToolset)/
