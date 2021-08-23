@@ -1,8 +1,5 @@
 import unittest
 
-import binbootstrapper
-binbootstrapper.update_binaries(__file__, binbootstrapper.DLL_GEO2)
-
 import testhelpers
 
 from geo2helpers import geo2helpers

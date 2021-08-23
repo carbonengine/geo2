@@ -1,8 +1,4 @@
-"""Due to issues in testing and how non-pythonic geo2 is we have to create this
-sub-module. If we were to keep this in __init__.py then the
-binbootstrapper wouldn't run correctly and geo2 can't be imported.
-
-Geo2 matrices are all 4x4."""
+# Geo2 matrices are all 4x4.
 import geo2
 
 
