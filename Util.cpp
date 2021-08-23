@@ -561,12 +561,15 @@ PyObject* XMMatrixAsTuple( const XMMATRIX& m )
 	PyObject* row3 = PyTuple_New( 4 );
 	PyObject* row4 = PyTuple_New( 4 );
 
+	XMFLOAT4X4 floats;
+	XMStoreFloat4x4( &floats, m );
+
 	for ( int i = 0; i < 4; ++i )
 	{
-		PyTuple_SET_ITEM( row1, i, PyFloat_FromDouble( *(&m._11 + i) ) );
-		PyTuple_SET_ITEM( row2, i, PyFloat_FromDouble( *(&m._21 + i) ) );
-		PyTuple_SET_ITEM( row3, i, PyFloat_FromDouble( *(&m._31 + i) ) );
-		PyTuple_SET_ITEM( row4, i, PyFloat_FromDouble( *(&m._41 + i) ) );
+		PyTuple_SET_ITEM( row1, i, PyFloat_FromDouble( *(&floats._11 + i) ) );
+		PyTuple_SET_ITEM( row2, i, PyFloat_FromDouble( *(&floats._21 + i) ) );
+		PyTuple_SET_ITEM( row3, i, PyFloat_FromDouble( *(&floats._31 + i) ) );
+		PyTuple_SET_ITEM( row4, i, PyFloat_FromDouble( *(&floats._41 + i) ) );
 	}
 
 	PyTuple_SET_ITEM( ret, 0, row1 );	

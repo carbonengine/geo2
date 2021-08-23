@@ -106,7 +106,7 @@ Py_ssize_t Vector_length( Vector_Object *a )
 }
 
 // Get at the vector components by item index
-PyObject* Vector_get_item( register Vector_Object *a, register Py_ssize_t i )
+PyObject* Vector_get_item( Vector_Object *a, Py_ssize_t i )
 {
 	if ( i < 0 || i >= a->size ) {
 		PyErr_SetString( PyExc_IndexError, "vector index out of range" );
@@ -117,7 +117,7 @@ PyObject* Vector_get_item( register Vector_Object *a, register Py_ssize_t i )
 }
 
 // Set a vector component by index
-int Vector_set_item( register Vector_Object *a, register Py_ssize_t i, register PyObject* value )
+int Vector_set_item( Vector_Object *a, Py_ssize_t i, PyObject* value )
 {
 	if ( i < 0 || i >= a->size ) {
 		PyErr_SetString( PyExc_IndexError, "vector index out of range" );
@@ -133,7 +133,7 @@ int Vector_set_item( register Vector_Object *a, register Py_ssize_t i, register 
 
 	(a->value).u[(uint32_t)i] = val;
 
-	return NULL;
+	return 0;
 }
 
 // Print a string representation of the object for inspection

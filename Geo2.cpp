@@ -1574,7 +1574,6 @@ PyObject* MatrixAffineTransformation( PyObject *module, PyObject *args )
 	float scale;
 	XMVECTOR rotationCenter, translation;
 	XMVECTOR rotation;
-	XMMATRIX mat;
 	XMVECTOR scaling;
 
 	PyObject* p1 = NULL;
@@ -2240,7 +2239,12 @@ PyObject* QuaternionRotationArc( PyObject *module, PyObject *args )
 	}
 	
 	float dot = XMVectorGetByIndex( XMVector3Dot( v1, v2 ), 0 );
-	XMVECTOR result = XMQuaternionRotationAxis( XMVector3Cross( v1, v2 ), acos( dot ) );
+	auto axis = XMVector3Cross( v1, v2 );
+	if( XMVector3Equal( axis, XMVectorZero() ) )
+	{
+		return XMVectorAsPyFloats( XMQuaternionIdentity(), 4 );
+	}
+	XMVECTOR result = XMQuaternionRotationAxis( axis, acos( dot ) );
 	if( XMVector4IsNaN( result ) )
 	{
 		return XMVectorAsPyFloats( XMQuaternionIdentity(), 4 );
@@ -2345,8 +2349,8 @@ static inline int32_t XMVector3IsUnit( FXMVECTOR V )
 int32_t IntersectRayTriangle( FXMVECTOR Origin, FXMVECTOR Direction, FXMVECTOR V0, CXMVECTOR V1, CXMVECTOR V2,
                            float* pDist )
 {
-    XMASSERT( pDist );
-    XMASSERT( XMVector3IsUnit( Direction ) );
+    assert( pDist );
+    assert( XMVector3IsUnit( Direction ) );
 
     static const XMVECTOR Epsilon =
     {
@@ -2444,9 +2448,9 @@ int32_t IntersectRayTriangle( FXMVECTOR Origin, FXMVECTOR Direction, FXMVECTOR V
 //-----------------------------------------------------------------------------
 int32_t IntersectRaySphere( FXMVECTOR Origin, FXMVECTOR Direction, const XMFLOAT3* spCenter, const float* spRadius, float* pDist )
 {
-    XMASSERT( spCenter );
-    XMASSERT( pDist );
-    XMASSERT( XMVector3IsUnit( Direction ) );
+    assert( spCenter );
+    assert( pDist );
+    assert( XMVector3IsUnit( Direction ) );
 
     XMVECTOR Center = XMLoadFloat3( spCenter );
     XMVECTOR Radius = XMVectorReplicatePtr( spRadius );
@@ -2514,9 +2518,9 @@ static inline int32_t XMVector3AnyTrue( FXMVECTOR V )
 //-----------------------------------------------------------------------------
 int32_t IntersectRayAxisAlignedBox( FXMVECTOR Origin, FXMVECTOR Direction, const XMFLOAT3* center, const XMFLOAT3* extents, float* pDist )
 {
-    XMASSERT( center );
-    XMASSERT( pDist );
-    XMASSERT( XMVector3IsUnit( Direction ) );
+    assert( center );
+    assert( pDist );
+    assert( XMVector3IsUnit( Direction ) );
 
     static const XMVECTOR Epsilon =
     {
@@ -2596,11 +2600,11 @@ int32_t IntersectRayAxisAlignedBox( FXMVECTOR Origin, FXMVECTOR Direction, const
 // The algorithm is based on  Jack Ritter, "An Efficient Bounding Sphere", 
 // Graphics Gems.
 //-----------------------------------------------------------------------------
-VOID ComputeBoundingSphereFromPoints( XMFLOAT3* center, float* radius, uint32_t Count, const XMFLOAT3* pPoints, uint32_t Stride )
+void ComputeBoundingSphereFromPoints( XMFLOAT3* center, float* radius, uint32_t Count, const XMFLOAT3* pPoints, uint32_t Stride )
 {
-    XMASSERT( center );
-    XMASSERT( Count > 0 );
-    XMASSERT( pPoints );
+    assert( center );
+    assert( Count > 0 );
+    assert( pPoints );
 
     // Find the points with minimum and maximum x, y, and z
     XMVECTOR MinX, MaxX, MinY, MaxY, MinZ, MaxZ;
@@ -2706,11 +2710,11 @@ VOID ComputeBoundingSphereFromPoints( XMFLOAT3* center, float* radius, uint32_t 
 //-----------------------------------------------------------------------------
 // Find the minimum axis aligned bounding box containing a set of points.
 //-----------------------------------------------------------------------------
-VOID ComputeBoundingAxisAlignedBoxFromPoints( XMFLOAT3* center, XMFLOAT3* extents, uint32_t Count, const XMFLOAT3* pPoints, uint32_t Stride )
+void ComputeBoundingAxisAlignedBoxFromPoints( XMFLOAT3* center, XMFLOAT3* extents, uint32_t Count, const XMFLOAT3* pPoints, uint32_t Stride )
 {
-    XMASSERT( center );
-    XMASSERT( Count > 0 );
-    XMASSERT( pPoints );
+    assert( center );
+    assert( Count > 0 );
+    assert( pPoints );
 
     // Find the minimum and maximum x, y, and z
     XMVECTOR vMin, vMax;
@@ -4482,7 +4486,16 @@ static PyMethodDef native_methods[] = {
 	{NULL,      NULL}      
 };
 
-PyMODINIT_FUNC initgeo2( )
+#define CONCAT( a, b ) _CONCAT( a, b )
+#define _CONCAT( a, b ) a##b
+#define STRINGIZE( x ) _STRINGIZE( x )
+#define _STRINGIZE( s ) #s
+
+PyMODINIT_FUNC
+#ifndef _WIN32
+__attribute__((visibility("default")))
+#endif
+CONCAT( init_geo2, CCP_BUILD_FLAVOR )()
 {
 	PyObject *module;
 
@@ -4492,7 +4505,7 @@ PyMODINIT_FUNC initgeo2( )
 	if ( PyType_Ready( &VectorD_Type ) < 0 )
 		return;
 
-	module = Py_InitModule( "geo2", native_methods );
+	module = Py_InitModule( STRINGIZE( CONCAT( _geo2, CCP_BUILD_FLAVOR ) ), native_methods );
 
 	if ( module == NULL )
 		return;
