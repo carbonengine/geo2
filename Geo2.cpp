@@ -2203,7 +2203,7 @@ PyObject* QuaternionRotationSetYawPitchRoll( PyObject *module, PyObject *args )
 		return NULL;
 	}
 
-	return XMVectorAsPyFloats( XMQuaternionRotationRollPitchYaw( pitch, yaw, roll ), 4 );
+	return XMVectorAsPyFloats( RotationQuaternion( yaw, pitch, roll ), 4 );
 }
 
 PyObject* QuaternionTransformVector( PyObject *module, PyObject *args )
