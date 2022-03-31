@@ -4486,16 +4486,16 @@ static PyMethodDef native_methods[] = {
 	{NULL,      NULL}      
 };
 
-#define CONCAT( a, b ) _CONCAT( a, b )
-#define _CONCAT( a, b ) a##b
-#define STRINGIZE( x ) _STRINGIZE( x )
-#define _STRINGIZE( s ) #s
+#define GEO2_CONCAT( a, b ) _GEO2_CONCAT( a, b )
+#define _GEO2_CONCAT( a, b ) a##b
+#define GEO2_STRINGIZE( x ) _GEO2_STRINGIZE( x )
+#define _GEO2_STRINGIZE( s ) #s
 
 PyMODINIT_FUNC
 #ifndef _WIN32
 __attribute__((visibility("default")))
 #endif
-CONCAT( init_geo2, CCP_BUILD_FLAVOR )()
+	GEO2_CONCAT( init_geo2, CCP_BUILD_FLAVOR )()
 {
 	PyObject *module;
 
@@ -4505,7 +4505,7 @@ CONCAT( init_geo2, CCP_BUILD_FLAVOR )()
 	if ( PyType_Ready( &VectorD_Type ) < 0 )
 		return;
 
-	module = Py_InitModule( STRINGIZE( CONCAT( _geo2, CCP_BUILD_FLAVOR ) ), native_methods );
+	module = Py_InitModule( GEO2_STRINGIZE( GEO2_CONCAT( _geo2, CCP_BUILD_FLAVOR ) ), native_methods );
 
 	if ( module == NULL )
 		return;
