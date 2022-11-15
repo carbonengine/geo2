@@ -18,6 +18,7 @@ target_sources(geo2 PRIVATE
 target_include_directories(geo2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
 if(APPLE)
+    target_link_libraries(geo2 PRIVATE CcpCore)
     set_target_properties(
         geo2
         PROPERTIES 

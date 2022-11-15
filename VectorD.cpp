@@ -2,7 +2,7 @@
 #include "Vector.h"
 #include "Util.h"
 #ifndef _WIN32
-#include "CcpCore/include/CcpSecureCrt.h"
+#include <CcpSecureCrt.h>
 #endif
 #include <cstdint>
 #include <algorithm>
@@ -18,14 +18,14 @@ static PyObject* VectorD_alloc( PyTypeObject *type, VectorD* value, unsigned cha
 		return NULL;
 
 	( ( VectorD_Object* )self )->size = size;
-	(( VectorD_Object* )self )->value = *value;	
+	(( VectorD_Object* )self )->value = *value;
 	return self;
 }
 
 // object.x == getattr( object, "x" )
 // Here we resolve any member variables
 PyObject* VectorD_getattr( PyObject* self, char* attrname )
-{ 
+{
 	VectorD_Object *object = (VectorD_Object *)self;
 	int stringLength = (int)strlen( attrname );
 	if( stringLength == 1 )
@@ -37,8 +37,8 @@ PyObject* VectorD_getattr( PyObject* self, char* attrname )
 		}
 		else
 		{
-			return PyFloat_FromDouble( object->value.u[index] );	
-		}		
+			return PyFloat_FromDouble( object->value.u[index] );
+		}
 	}
 	else if( stringLength < 5 )
 	{
@@ -59,12 +59,12 @@ PyObject* VectorD_getattr( PyObject* self, char* attrname )
 	{
 		// If none is found, forward the query to the generic attribute handler
 		return PyObject_GenericGetAttr( self, PyString_FromString( attrname ) );
-	}	
+	}
 }
 
-// component assignment 
+// component assignment
 int VectorD_setattr( PyObject* self, char* attrname, PyObject* value )
-{ 
+{
 	// if someone calls del vector.x, value will be null. We don't allow that
 	if ( value == NULL )
 	{
@@ -84,14 +84,14 @@ int VectorD_setattr( PyObject* self, char* attrname, PyObject* value )
 		}
 		else
 		{
-			double fresult;				
-			if ( !GetRealValue<double>( value, &fresult ) ) 
-			{		
+			double fresult;
+			if ( !GetRealValue<double>( value, &fresult ) )
+			{
 				PyErr_SetString( PyExc_TypeError, "a double is required" );
 				return -1;
-			}	
-			object->value.u[index] = fresult;	
-		}	
+			}
+			object->value.u[index] = fresult;
+		}
 	}
 	else
 	{
@@ -126,11 +126,11 @@ int VectorD_set_item( VectorD_Object *a, Py_ssize_t i, PyObject* value )
 	}
 
 	double val;
-	if ( !GetRealValue<double>( value, &val ) ) 
-	{		
+	if ( !GetRealValue<double>( value, &val ) )
+	{
 		PyErr_SetString( PyExc_TypeError, "a double is required" );
 		return -1;
-	}	
+	}
 
 	(a->value).u[(uint32_t)i] = val;
 
@@ -142,7 +142,7 @@ PyObject* VectorD_repr( VectorD_Object *v )
 {
 	char buff[256];
 
-	// Since there are only 3 types of vectors to create, 
+	// Since there are only 3 types of vectors to create,
 	// no need to complicate things.
 	if( v->size == 3 ) // 3 is the most common size so lets check for that first
 	{
@@ -161,10 +161,10 @@ PyObject* VectorD_repr( VectorD_Object *v )
 
 PyObject* VectorD_new( PyTypeObject *type, PyObject *args, PyObject *kwds )
 {
-	VectorD vec = {0.0, 0.0, 0.0, 0.0};	
+	VectorD vec = {0.0, 0.0, 0.0, 0.0};
 	Py_ssize_t tupleSize = PyTuple_Size(args);
 	if( tupleSize >= 2 )
-	{		
+	{
 		if( !PyArg_ParseTuple( args, "dd|dd", &vec.u[0], &vec.u[1], &vec.u[2], &vec.u[3] ) )
 		{
 			return NULL;
@@ -196,16 +196,16 @@ PyObject* VectorD_new( PyTypeObject *type, PyObject *args, PyObject *kwds )
 
 // Addition
 PyObject* VectorD_add( PyObject *py_left, PyObject *py_right )
-{	
+{
 	bool rightIsVec = VectorD_Check( py_right );
 	bool leftIsVec = VectorD_Check( py_left );
-	if( leftIsVec && rightIsVec ) 
+	if( leftIsVec && rightIsVec )
 	{
 		unsigned char size = std::min( ( ( VectorD_Object* ) py_left )->size,( ( VectorD_Object* )py_right )->size );
 		VectorD result;
 		for( int i = 0; i < size; i++ )
 		{
-			result.u[i] = (( VectorD_Object* ) py_left )->value.u[i] + 
+			result.u[i] = (( VectorD_Object* ) py_left )->value.u[i] +
 						  (( VectorD_Object* ) py_right )->value.u[i];
 		}
 		return VectorD_alloc( &VectorD_Type, &result, size );
@@ -215,7 +215,7 @@ PyObject* VectorD_add( PyObject *py_left, PyObject *py_right )
 		// Support for adding a tuple to the vector...
 		VectorD a;
 		size_t size;
-		if( ( ExtractVectorDFromSequence( py_left, 2, a, &size ) && rightIsVec ) || 
+		if( ( ExtractVectorDFromSequence( py_left, 2, a, &size ) && rightIsVec ) ||
 			( ExtractVectorDFromSequence( py_right, 2, a, &size ) && leftIsVec ) )
 		{
 			PyObject* vector = rightIsVec ? py_right : py_left;
@@ -240,14 +240,14 @@ PyObject* VectorD_sub( PyObject *py_left, PyObject *py_right )
 {
 	bool rightIsVec = VectorD_Check( py_right );
 	bool leftIsVec = VectorD_Check( py_left );
-	if( leftIsVec && rightIsVec ) 
+	if( leftIsVec && rightIsVec )
 	{
 		unsigned char size = std::min( ( ( VectorD_Object* ) py_left )->size,( ( VectorD_Object* )py_right )->size );
 
 		VectorD result;
 		for( int i = 0; i < size; i++ )
 		{
-			result.u[i] = (( VectorD_Object* ) py_left )->value.u[i] - 
+			result.u[i] = (( VectorD_Object* ) py_left )->value.u[i] -
 				(( VectorD_Object* ) py_right )->value.u[i];
 		}
 		return VectorD_alloc( &VectorD_Type, &result, size );
@@ -291,17 +291,17 @@ PyObject* VectorD_mul( PyObject *py_left, PyObject *py_right )
 	double scalar;
 	bool rightIsVec = VectorD_Check( py_right );
 	bool leftIsVec = VectorD_Check( py_left );
-	if ( leftIsVec && GetRealValue<double>( py_right, &scalar ) ) 
-	{		
+	if ( leftIsVec && GetRealValue<double>( py_right, &scalar ) )
+	{
 		unsigned char size = ( ( VectorD_Object* )py_left )->size;
 		VectorD result;
 		for( int i = 0; i < size; i++ )
 		{
 			result.u[i] = (( VectorD_Object* ) py_left )->value.u[i] * scalar;
 		}
-		return VectorD_alloc( &VectorD_Type, &result, size );	
+		return VectorD_alloc( &VectorD_Type, &result, size );
 	}
-	else if ( GetRealValue<double>( py_left, &scalar ) && rightIsVec ) 
+	else if ( GetRealValue<double>( py_left, &scalar ) && rightIsVec )
 	{
 		unsigned char size = ( ( VectorD_Object* )py_right )->size;
 		VectorD result;
@@ -309,7 +309,7 @@ PyObject* VectorD_mul( PyObject *py_left, PyObject *py_right )
 		{
 			result.u[i] = (( VectorD_Object* ) py_right )->value.u[i] * scalar;
 		}
-		return VectorD_alloc( &VectorD_Type, &result, size );		
+		return VectorD_alloc( &VectorD_Type, &result, size );
 	}
 	else
 	{
@@ -411,7 +411,7 @@ PyObject* VectorD_setstate( VectorD_Object *v, PyObject* state )
 PyObject* VectorD_reduce( VectorD_Object *v )
 {
 	PyObject* ret = PyTuple_New( 3 );
-	PyTuple_SET_ITEM( ret, 0, PyObject_GetAttrString( (PyObject*)v, "__class__" ) );	
+	PyTuple_SET_ITEM( ret, 0, PyObject_GetAttrString( (PyObject*)v, "__class__" ) );
 	PyTuple_SET_ITEM( ret, 1, VectorD_getinitargs( v ) );
 	PyTuple_SET_ITEM( ret, 2, VectorD_getstate( v ) );
 	return ret;
@@ -434,7 +434,7 @@ static PyMethodDef VectorD_methods[] = {
 	{"__setstate__", (PyCFunction)VectorD_setstate, METH_O,
 	"Set internal state"},
 	{"__reduce__", (PyCFunction)VectorD_reduce, METH_NOARGS,
-	"Pickle support"},	
+	"Pickle support"},
 	{NULL, NULL, 0, NULL}
 };
 

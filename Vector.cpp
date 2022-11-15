@@ -1,7 +1,7 @@
 #include "Vector.h"
 #include "Util.h"
 #ifndef _WIN32
-#include "CcpCore/include/CcpSecureCrt.h"
+#include <CcpSecureCrt.h>
 #endif
 #include <algorithm>
 #include <limits>
