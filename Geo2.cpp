@@ -1,5 +1,5 @@
 
-#include "CcpMath/include/CcpMath.h"
+#include <CcpMath.h>
 #include <Python.h>
 #include "Vector.h"
 #include "Util.h"

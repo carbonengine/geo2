@@ -2,7 +2,7 @@
 #ifndef Util_h
 #define Util_h
 
-#include "CcpMath/include/CcpMath.h"
+#include <CcpMath.h>
 #include "Vector.h"
 
 
