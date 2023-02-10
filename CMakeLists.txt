@@ -17,7 +17,7 @@ list(INSERT CMAKE_MODULE_PATH 0 ${BRANCH_ROOT_DIR}/cmake)
 
 include(CcpGlobalSettings)
 
-add_library(geo2 SHARED)
+ccp_add_library(geo2 SHARED)
 
 find_package(Python REQUIRED NO_CMAKE_PATH)
 find_package(CcpCore REQUIRED NO_CMAKE_PATH)
