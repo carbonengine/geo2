@@ -20,6 +20,7 @@ include(CcpGlobalSettings)
 add_library(geo2 SHARED)
 
 find_package(Python REQUIRED NO_CMAKE_PATH)
+find_package(CcpCore REQUIRED NO_CMAKE_PATH)
 find_package(CcpMath REQUIRED NO_CMAKE_PATH)
 target_link_libraries(geo2 PRIVATE Python CcpMath)
 
