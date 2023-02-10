@@ -1,0 +1,4 @@
+ownermails:
+  - hrafng@ccpgames.com
+testing:
+  skipci: True
