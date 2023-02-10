@@ -33,3 +33,22 @@ if(APPLE)
     target_link_libraries(geo2 PRIVATE CcpCore)
 endif()
 set_target_properties(geo2 PROPERTIES OUTPUT_NAME "_geo2")
+
+
+# Provide an install target iff this is the top level project only
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    # Install rule to ensure that our runtime and linker files are in the expected, platform-specific folders
+    install(
+        TARGETS geo2
+        CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
+        ARCHIVE DESTINATION lib/${CCP_PLATFORM}/${CCP_ARCHITECTURE}/${CCP_TOOLSET}/
+        LIBRARY DESTINATION lib/${CCP_PLATFORM}/${CCP_ARCHITECTURE}/${CCP_TOOLSET}/
+        RUNTIME DESTINATION bin/${CCP_PLATFORM}/${CCP_ARCHITECTURE}/${CCP_TOOLSET}/
+    )
+    # Install python packages
+    install(DIRECTORY python/ DESTINATION python
+            FILES_MATCHING
+            PATTERN "*.py"
+            PATTERN "package.yaml"
+    )
+endif()
