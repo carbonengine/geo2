@@ -20,7 +20,7 @@ class TestGeo2(unittest.TestCase):
         # MatrixResetScale returns all tuples,
         # but MATRIX_4x4 is a tuple of lists.
         # So we convert the result.
-        ideal = tuple(map(lambda e: tuple(e), MATRIX_4x4))
+        ideal = tuple([tuple(e) for e in MATRIX_4x4])
 
         testhelpers.assertEqualPretty(self, ideal, result)
 

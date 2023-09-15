@@ -364,6 +364,37 @@ static PyNumberMethods VectorD_as_number = {
 	0,						/* nb_divmod */
 	0,						/* nb_power */
 	(unaryfunc)VectorD_neg,	/* nb_negative */
+	nullptr, /* nb_positive */
+	nullptr, /* nb_absolute */
+	nullptr, /* nb_nonzero */
+	nullptr, /* nb_invert */
+	nullptr, /* nb_lshift */
+	nullptr, /* nb_rshift */
+	nullptr, /* nb_and */
+	nullptr, /* nb_xor */
+	nullptr, /* nb_or */
+	nullptr, /* nb_coerce */
+	nullptr, /* nb_int */
+	nullptr, /* nb_long */
+	nullptr, /* nb_float */
+	nullptr, /* nb_oct */
+	nullptr, /* nb_hex */
+	nullptr, /* nb_inplace_add */
+	nullptr, /* nb_inplace_subtract */
+	nullptr, /* nb_inplace_multiply */
+	nullptr, /* nb_inplace_divide */
+	nullptr, /* nb_inplace_remainder */
+	nullptr, /* nb_inplace_power */
+	nullptr, /* nb_inplace_lshift */
+	nullptr, /* nb_inplace_rshift */
+	nullptr, /* nb_inplace_and */
+	nullptr, /* nb_inplace_xor */
+	nullptr, /* nb_inplace_or */
+	nullptr, /* nb_floor_divide */
+	VectorD_div, /* nb_true_divide */
+	nullptr, /* nb_inplace_floor_divide */
+	nullptr, /* nb_inplace_true_divide */
+	nullptr /* nb_index */
 };
 
 static PySequenceMethods VectorD_as_sequence = {
