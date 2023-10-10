@@ -22,7 +22,7 @@ ccp_add_library(geo2 SHARED)
 find_package(Python REQUIRED NO_CMAKE_PATH)
 find_package(CcpCore REQUIRED NO_CMAKE_PATH)
 find_package(CcpMath REQUIRED NO_CMAKE_PATH)
-target_link_libraries(geo2 PRIVATE Python CcpMath)
+target_link_libraries(geo2 PRIVATE Python CcpMath CcpCore)
 
 file(GLOB SRC_FILES "src/*")
 
@@ -30,9 +30,6 @@ target_sources(geo2 PRIVATE
     ${SRC_FILES}
 )
 
-if(APPLE)
-    target_link_libraries(geo2 PRIVATE CcpCore)
-endif()
 set_target_properties(geo2 PROPERTIES OUTPUT_NAME "_geo2")
 
 
