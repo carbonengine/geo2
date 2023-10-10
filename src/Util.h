@@ -13,9 +13,9 @@ template <class T> bool GetRealValue( PyObject* item, T* result )
 	{
 		*result = (T)PyFloat_AS_DOUBLE( item );
 	}
-	else if( PyInt_CheckExact( item ) )
+	else if( PyLong_CheckExact( item ) )
 	{
-		*result = (T)PyInt_AS_LONG( item );
+		*result = (T)PyLong_AS_LONG( item );
 	}
 	else
 	{		

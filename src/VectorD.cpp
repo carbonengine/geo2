@@ -26,6 +26,11 @@ static PyObject* VectorD_alloc( PyTypeObject *type, VectorD* value, unsigned cha
 // Here we resolve any member variables
 PyObject* VectorD_getattr( PyObject* self, char* attrname )
 {
+	auto* attr = PyUnicode_FromString( attrname );
+	if( attr == nullptr )
+	{
+		return nullptr;
+	}
 	VectorD_Object *object = (VectorD_Object *)self;
 	int stringLength = (int)strlen( attrname );
 	if( stringLength == 1 )
@@ -33,7 +38,7 @@ PyObject* VectorD_getattr( PyObject* self, char* attrname )
 		int index = ((attrname[0] - 'w')+3)%4;
 		if( index < 0 || index >= object->size )
 		{
-			return PyObject_GenericGetAttr( self, PyString_FromString( attrname ) );
+			return PyObject_GenericGetAttr( self, attr );
 		}
 		else
 		{
@@ -49,7 +54,7 @@ PyObject* VectorD_getattr( PyObject* self, char* attrname )
 			if( index < 0  || index  >= object->size )
 			{
 				// If none is found, forward the query to the generic attribute handler
-				return PyObject_GenericGetAttr( self, PyString_FromString( attrname ) );
+				return PyObject_GenericGetAttr( self, attr );
 			}
 			vector.u[i] = object->value.u[index];
 		}
@@ -58,7 +63,7 @@ PyObject* VectorD_getattr( PyObject* self, char* attrname )
 	else
 	{
 		// If none is found, forward the query to the generic attribute handler
-		return PyObject_GenericGetAttr( self, PyString_FromString( attrname ) );
+		return PyObject_GenericGetAttr( self, attr );
 	}
 }
 
@@ -72,6 +77,12 @@ int VectorD_setattr( PyObject* self, char* attrname, PyObject* value )
 		return -1;
 	}
 
+	auto* attr = PyUnicode_FromString( attrname );
+	if( attr == nullptr )
+	{
+		return 0;
+	}
+
 	int stringLength = (int)strlen( attrname );
 	// Only check the first character
 	if( stringLength == 1 )
@@ -80,7 +91,7 @@ int VectorD_setattr( PyObject* self, char* attrname, PyObject* value )
 		int index = ((attrname[0] - 'w')+3)%4;
 		if( index < 0 || index >= object->size )
 		{
-			return PyObject_GenericSetAttr( self, PyString_FromString( attrname ), value );
+			return PyObject_GenericSetAttr( self, attr, value );
 		}
 		else
 		{
@@ -95,7 +106,7 @@ int VectorD_setattr( PyObject* self, char* attrname, PyObject* value )
 	}
 	else
 	{
-		return PyObject_GenericSetAttr( self, PyString_FromString( attrname ), value );
+		return PyObject_GenericSetAttr( self, attr, value );
 	}
 	return 0;
 }
@@ -156,7 +167,7 @@ PyObject* VectorD_repr( VectorD_Object *v )
 	{
 		sprintf_s( buff, "(%g, %g, %g, %g)", (v->value).x, (v->value).y, (v->value).z, (v->value).w );
 	}
-	return PyString_FromString( buff );
+	return PyUnicode_FromString( buff );
 }
 
 PyObject* VectorD_new( PyTypeObject *type, PyObject *args, PyObject *kwds )
@@ -359,10 +370,9 @@ static PyNumberMethods VectorD_as_number = {
 	VectorD_add,			/* nb_add */
 	VectorD_sub,			/* nb_subtract */
 	VectorD_mul,			/* nb_multiply */
-	VectorD_div,			/* nb_divide */
-	0,						/* nb_remainder */
-	0,						/* nb_divmod */
-	0,						/* nb_power */
+	nullptr,						/* nb_remainder */
+	nullptr,						/* nb_divmod */
+	nullptr,						/* nb_power */
 	(unaryfunc)VectorD_neg,	/* nb_negative */
 	nullptr, /* nb_positive */
 	nullptr, /* nb_absolute */
@@ -375,14 +385,11 @@ static PyNumberMethods VectorD_as_number = {
 	nullptr, /* nb_or */
 	nullptr, /* nb_coerce */
 	nullptr, /* nb_int */
-	nullptr, /* nb_long */
+	nullptr, /* nb_unused */
 	nullptr, /* nb_float */
-	nullptr, /* nb_oct */
-	nullptr, /* nb_hex */
 	nullptr, /* nb_inplace_add */
 	nullptr, /* nb_inplace_subtract */
 	nullptr, /* nb_inplace_multiply */
-	nullptr, /* nb_inplace_divide */
 	nullptr, /* nb_inplace_remainder */
 	nullptr, /* nb_inplace_power */
 	nullptr, /* nb_inplace_lshift */
@@ -478,8 +485,7 @@ static const char* docD_str =	"Create a VectorD object"
 	"\nw       : (optional)w component";
 
 PyTypeObject VectorD_Type = {
-	PyObject_HEAD_INIT( NULL )
-	0,                          /* ob_size */
+	PyVarObject_HEAD_INIT( NULL, 0 )
 	"geo2.VectorD",				/* tp_name */
 	sizeof( VectorD_Object ),	/* tp_basicsize */
 	0,                          /* tp_itemsize */
@@ -499,7 +505,6 @@ PyTypeObject VectorD_Type = {
 	0,                          /* tp_setattro */
 	0,                          /* tp_as_buffer */
 	Py_TPFLAGS_DEFAULT |        /* tp_flags */
-	Py_TPFLAGS_CHECKTYPES |     /* PyNumberMethods do their own coercion */
 	Py_TPFLAGS_BASETYPE,        /* Vector3 allows subclassing*/
 	docD_str,	/* tp_doc */
 	0,                          /* tp_traverse */
