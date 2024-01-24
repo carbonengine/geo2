@@ -3495,6 +3495,8 @@ static PyMethodDef native_methods[] = {
 		"\n:type pos2: (float, float, float)"
 		"\n:param tan2: a tangent vector"
 		"\n:type tan2: (float, float, float)"
+		"\n:param t: the interpolant"
+		"\n:type t: float"
 		"\n:returns: vector that is the result of the Hermite spline interpolation"
 		"\n:rtype: (float, float, float)"
 	},
