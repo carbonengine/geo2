@@ -1383,23 +1383,15 @@ PyObject* Vec3Unproject( PyObject *module, PyObject *args )
 	XMMATRIX projection, view, world;
 
 	PyObject* p1 = NULL;
-	PyObject* p2 = NULL;
 	PyObject* p3 = NULL;
 	PyObject* p4 = NULL;
 	PyObject* p5 = NULL;
 
-	if( !PyArg_ParseTuple( args, "OOOOO", &p1, &p2, &p3, &p4, &p5 ) 
+	if( !PyArg_ParseTuple( args, "O(ffffff)OOO", &p1, &X, &Y, &Width, &Height, &MinZ, &MaxZ, &p3, &p4, &p5 )
 		|| !ExtractXMVectorFromSequence( p1, a, 3 ) )
 	{
 		return NULL;
 	}
-
-	X = (float)PyLong_AsLong( PySequence_GetItem( p2, 0 ) );
-	Y = (float)PyLong_AsLong( PySequence_GetItem( p2, 1 ) );
-	Width = (float)PyLong_AsLong( PySequence_GetItem( p2, 2 ) );
-	Height = (float)PyLong_AsLong( PySequence_GetItem( p2, 3 ) );
-	MinZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 4 ) );
-	MaxZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 5 ) );
 
 	if( !ExtractXMMatrixFromSequence( p3, projection ) )
 	{
@@ -1426,22 +1418,14 @@ PyObject* Vec3UnprojectArray( PyObject *module, PyObject *args )
 	XMMATRIX projection, view, world;
 
 	PyObject* p1 = NULL;
-	PyObject* p2 = NULL;
 	PyObject* p3 = NULL;
 	PyObject* p4 = NULL;
 	PyObject* p5 = NULL;
 
-	if(!PyArg_ParseTuple( args, "OOOOO", &p1, &p2, &p3, &p4, &p5 ) )
+	if(!PyArg_ParseTuple( args, "O(ffffff)OOO", &p1, &X, &Y, &Width, &Height, &MinZ, &MaxZ, &p3, &p4, &p5 ) )
 	{
 		return NULL;
 	}
-
-	X = (float)PyLong_AsLong( PySequence_GetItem( p2, 0 ) );
-	Y = (float)PyLong_AsLong( PySequence_GetItem( p2, 1 ) );
-	Width = (float)PyLong_AsLong( PySequence_GetItem( p2, 2 ) );
-	Height = (float)PyLong_AsLong( PySequence_GetItem( p2, 3 ) );
-	MinZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 4 ) );
-	MaxZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 5 ) );
 
 	if( !ExtractXMMatrixFromSequence( p3, projection ) )
 	{
