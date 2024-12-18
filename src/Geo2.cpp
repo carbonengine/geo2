@@ -1085,10 +1085,10 @@ PyObject* Vec3Project( PyObject *module, PyObject *args )
 		return NULL;
 	}
 
-	X = (float)PyInt_AsLong( PySequence_GetItem( p2, 0 ) );
-	Y = (float)PyInt_AsLong( PySequence_GetItem( p2, 1 ) );
-	Width = (float)PyInt_AsLong( PySequence_GetItem( p2, 2 ) );
-	Height = (float)PyInt_AsLong( PySequence_GetItem( p2, 3 ) );
+	X = (float)PyLong_AsLong( PySequence_GetItem( p2, 0 ) );
+	Y = (float)PyLong_AsLong( PySequence_GetItem( p2, 1 ) );
+	Width = (float)PyLong_AsLong( PySequence_GetItem( p2, 2 ) );
+	Height = (float)PyLong_AsLong( PySequence_GetItem( p2, 3 ) );
 	MinZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 4 ) );
 	MaxZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 5 ) );
 
@@ -1126,10 +1126,10 @@ PyObject* Vec3ProjectArray( PyObject *module, PyObject *args )
 		return NULL;
 	}
 
-	X = (float)PyInt_AsLong( PySequence_GetItem( p2, 0 ) );
-	Y = (float)PyInt_AsLong( PySequence_GetItem( p2, 1 ) );
-	Width = (float)PyInt_AsLong( PySequence_GetItem( p2, 2 ) );
-	Height = (float)PyInt_AsLong( PySequence_GetItem( p2, 3 ) );
+	X = (float)PyLong_AsLong( PySequence_GetItem( p2, 0 ) );
+	Y = (float)PyLong_AsLong( PySequence_GetItem( p2, 1 ) );
+	Width = (float)PyLong_AsLong( PySequence_GetItem( p2, 2 ) );
+	Height = (float)PyLong_AsLong( PySequence_GetItem( p2, 3 ) );
 	MinZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 4 ) );
 	MaxZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 5 ) );
 
@@ -1383,23 +1383,15 @@ PyObject* Vec3Unproject( PyObject *module, PyObject *args )
 	XMMATRIX projection, view, world;
 
 	PyObject* p1 = NULL;
-	PyObject* p2 = NULL;
 	PyObject* p3 = NULL;
 	PyObject* p4 = NULL;
 	PyObject* p5 = NULL;
 
-	if( !PyArg_ParseTuple( args, "OOOOO", &p1, &p2, &p3, &p4, &p5 ) 
+	if( !PyArg_ParseTuple( args, "O(ffffff)OOO", &p1, &X, &Y, &Width, &Height, &MinZ, &MaxZ, &p3, &p4, &p5 )
 		|| !ExtractXMVectorFromSequence( p1, a, 3 ) )
 	{
 		return NULL;
 	}
-
-	X = (float)PyInt_AsLong( PySequence_GetItem( p2, 0 ) );
-	Y = (float)PyInt_AsLong( PySequence_GetItem( p2, 1 ) );
-	Width = (float)PyInt_AsLong( PySequence_GetItem( p2, 2 ) );
-	Height = (float)PyInt_AsLong( PySequence_GetItem( p2, 3 ) );
-	MinZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 4 ) );
-	MaxZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 5 ) );
 
 	if( !ExtractXMMatrixFromSequence( p3, projection ) )
 	{
@@ -1426,22 +1418,14 @@ PyObject* Vec3UnprojectArray( PyObject *module, PyObject *args )
 	XMMATRIX projection, view, world;
 
 	PyObject* p1 = NULL;
-	PyObject* p2 = NULL;
 	PyObject* p3 = NULL;
 	PyObject* p4 = NULL;
 	PyObject* p5 = NULL;
 
-	if(!PyArg_ParseTuple( args, "OOOOO", &p1, &p2, &p3, &p4, &p5 ) )
+	if(!PyArg_ParseTuple( args, "O(ffffff)OOO", &p1, &X, &Y, &Width, &Height, &MinZ, &MaxZ, &p3, &p4, &p5 ) )
 	{
 		return NULL;
 	}
-
-	X = (float)PyInt_AsLong( PySequence_GetItem( p2, 0 ) );
-	Y = (float)PyInt_AsLong( PySequence_GetItem( p2, 1 ) );
-	Width = (float)PyInt_AsLong( PySequence_GetItem( p2, 2 ) );
-	Height = (float)PyInt_AsLong( PySequence_GetItem( p2, 3 ) );
-	MinZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 4 ) );
-	MaxZ = (float)PyFloat_AsDouble( PySequence_GetItem( p2, 5 ) );
 
 	if( !ExtractXMMatrixFromSequence( p3, projection ) )
 	{
@@ -1671,11 +1655,11 @@ PyObject* MatrixIsIdentity( PyObject *module, PyObject *args )
 	}
 	if( XMMatrixIsIdentity( mat ) )
 	{
-		return PyInt_FromLong(1);
+		return PyLong_FromLong(1);
 	}
 	else
 	{
-		return PyInt_FromLong(0);
+		return PyLong_FromLong(0);
 	}	
 }
 
@@ -4493,27 +4477,37 @@ static PyMethodDef native_methods[] = {
 #define GEO2_STRINGIZE( x ) _GEO2_STRINGIZE( x )
 #define _GEO2_STRINGIZE( s ) #s
 
+static struct PyModuleDef moduleDef =
+{
+	PyModuleDef_HEAD_INIT,
+	GEO2_STRINGIZE( GEO2_CONCAT( _geo2, CCP_BUILD_FLAVOR ) ),
+	"",
+	-1,
+	native_methods
+};
 PyMODINIT_FUNC
 #ifndef _WIN32
 __attribute__((visibility("default")))
 #endif
-	GEO2_CONCAT( init_geo2, CCP_BUILD_FLAVOR )()
+	GEO2_CONCAT( PyInit__geo2, CCP_BUILD_FLAVOR )()
 {
 	PyObject *module;
 
 	if ( PyType_Ready( &Vector_Type ) < 0 )
-		return;
+		return nullptr;
 
 	if ( PyType_Ready( &VectorD_Type ) < 0 )
-		return;
+		return nullptr;
 
-	module = Py_InitModule( GEO2_STRINGIZE( GEO2_CONCAT( _geo2, CCP_BUILD_FLAVOR ) ), native_methods );
+	module = PyModule_Create( &moduleDef );
 
-	if ( module == NULL )
-		return;
+	if ( module == nullptr )
+		return nullptr;
 
 	Py_INCREF( &Vector_Type );	
 	PyModule_AddObject( module, "Vector", (PyObject *)&Vector_Type );
 	Py_INCREF( &VectorD_Type );
 	PyModule_AddObject( module, "VectorD", (PyObject *)&VectorD_Type );
+
+	return module;
 }
