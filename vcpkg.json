@@ -1,23 +1,16 @@
 {
   "dependencies": [
     {
-      "name": "python3",
-      "version>=": "3.12.3#1"
+      "name": "python3-prebuilt",
+      "version>=": "3.12.3#2"
     },
     {
       "name": "carbon-core",
-      "version>=": "2.1.1#4",
-      "default-features": false
+      "version>=": "2.1.1#6"
     },
     {
       "name": "carbon-math",
-      "version>=": "1.1.1-alpha.2"
-    }
-  ],
-  "overrides": [
-    {
-      "name": "directxmath",
-      "version": "3.1.6"
+      "version>=": "1.1.2-alpha.0"
     }
   ]
 }
