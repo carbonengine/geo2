@@ -6,8 +6,7 @@
     },
     {
       "name": "carbon-core",
-      "version>=": "2.1.1#4",
-      "default-features": false
+      "version>=": "2.1.1#6"
     },
     {
       "name": "carbon-math",
