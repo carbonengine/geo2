@@ -28,5 +28,8 @@ __pycache__/
 .editorconfig
 .idea/
 
+# Build output
 cmake-build-*/
+.cmake-build-*
+
 CMakeUserPresets.json
