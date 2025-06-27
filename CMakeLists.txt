@@ -23,8 +23,8 @@ set_target_properties(geo2 PROPERTIES OUTPUT_NAME "_geo2")
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
-    set (INSTALL_MODE "PERFORCE" CACHE STRING "Install this package to a perforce branch vendor folder - provided for backwards compatability")
-    if(INSTALL_MODE STREQUAL "PERFORCE")
+    option (INSTALL_TO_MONOLITH "Install this package to a perforce branch vendor folder - provided for backwards compatability" ON)
+    if(INSTALL_TO_MONOLITH)
         # Install rule to ensure that our runtime and linker files are in the expected, platform-specific folders
         install(
                 TARGETS geo2
@@ -39,7 +39,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
                 PATTERN "*.py"
                 PATTERN "package.yaml"
         )
-    else()
+    else() # VCPKG install mode
         install(
             TARGETS geo2
             EXPORT geo2Targets
