@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.31)
 
 project(geo2)
 
-include(cmake/CcpGlobalSettings.cmake)
 include(cmake/CcpTargetConfigurations.cmake)
+include(cmake/CcpDocsGenerator.cmake)
+include(cmake/CcpPackageConfigHelpers.cmake)
+include(cmake/CcpBuildConfigurations.cmake)
 
 ccp_add_library(geo2 SHARED)
 
