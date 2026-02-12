@@ -52,7 +52,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
         )
 
         # Install python packages
-        install(DIRECTORY python/ DESTINATION python
+        install(DIRECTORY python/ DESTINATION bin/python
                 FILES_MATCHING
                 PATTERN "*.py"
         )
