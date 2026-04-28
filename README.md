@@ -1,5 +1,5 @@
 # Carbon geo2
-> Python math library built on top of Microsoft DirectXMath
+Python math library built on top of Microsoft DirectXMath
 
 ## 🛠️ Building
 
