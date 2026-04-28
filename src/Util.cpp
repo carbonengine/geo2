@@ -1,3 +1,4 @@
+// Copyright © 2026 CCP ehf.
 
 #include "Util.h"
 #include <algorithm>

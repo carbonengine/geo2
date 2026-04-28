@@ -1,4 +1,4 @@
-# Copyright © 2025 CCP ehf.
+# Copyright © 2026 CCP ehf.
 function(_create_venv_and_install_packages)
     set(options "")
     set(single_value_keywords "PYTHON_EXE;VENV_NAME")

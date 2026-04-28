@@ -1,3 +1,4 @@
+// Copyright © 2026 CCP ehf.
 #include "Vector.h"
 #include "Util.h"
 #ifndef _WIN32

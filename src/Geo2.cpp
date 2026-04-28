@@ -1,3 +1,4 @@
+// Copyright © 2026 CCP ehf.
 
 #include <CcpMath.h>
 #include <Python.h>

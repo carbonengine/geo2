@@ -1,3 +1,4 @@
+# Copyright © 2026 CCP ehf.
 # Code in __init__.py is free from the geo2 dependency.
 # Bit odd to have a geo2helpers package free of geo2 dependency,
 # maybe we should've been named "mathhelpers" or something..?

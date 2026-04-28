@@ -1,3 +1,4 @@
+// Copyright © 2026 CCP ehf.
 #pragma once
 #ifndef Vector_h
 #define Vector_h
