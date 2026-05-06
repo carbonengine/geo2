@@ -1,3 +1,4 @@
+// Copyright © 2014 CCP ehf.
 #include "windows.h"
 
 #define EVEFILEDESC "CCP Math Library\0"

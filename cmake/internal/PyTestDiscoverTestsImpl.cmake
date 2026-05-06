@@ -1,4 +1,4 @@
-# Copyright © 2026 CCP ehf.
+# Copyright © 2025 CCP ehf.
 # Overwrite possibly existing ${_CTEST_FILE} with empty file
 set(flush_tests_MODE WRITE)
 

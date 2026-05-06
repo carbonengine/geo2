@@ -1,4 +1,4 @@
-// Copyright © 2026 CCP ehf.
+// Copyright © 2014 CCP ehf.
 #pragma once
 #ifndef Util_h
 #define Util_h
