@@ -1,3 +1,4 @@
+// Copyright © 2025 CCP ehf.
 package MacOS
 
 import jetbrains.buildServer.configs.kotlin.DslContext

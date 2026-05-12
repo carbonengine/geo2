@@ -1,4 +1,4 @@
-# Copyright © 2026 CCP ehf.
+# Copyright © 2014 CCP ehf.
 MATRIX_16 = [1.0, 0.0, 0.0, 0.0,
              0.0, 1.0, 0.0, 0.0,
              0.0, 0.0, 1.0, 0.0,

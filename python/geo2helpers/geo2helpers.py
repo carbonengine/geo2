@@ -1,4 +1,4 @@
-# Copyright © 2026 CCP ehf.
+# Copyright © 2014 CCP ehf.
 # Geo2 matrices are all 4x4.
 import geo2
 
