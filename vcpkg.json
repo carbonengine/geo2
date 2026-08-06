@@ -2,11 +2,11 @@
   "dependencies": [
     {
       "name": "python3",
-      "version>=": "3.12.9#1"
+      "version>=": "3.12.9#4"
     },
     {
       "name": "carbon-core",
-      "version>=": "2.4.0"
+      "version>=": "3.0.0"
     },
     {
       "name": "carbon-math",
