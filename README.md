@@ -1,7 +1,7 @@
 # Carbon geo2
-Python math library built on top of Microsoft DirectXMath
+Library to efficiently expose specific mathmatical data structures (vectors, matrices, quaternions) from carbon-math to Python.
 
-## 🛠️ Building
+## 🛠️ Building 
 
 Building can be done using the usual CMake work flow.
 
