@@ -1,5 +1,5 @@
 # Carbon geo2
-Library to efficiently expose specific mathmatical data structures (vectors, matrices, quaternions) from carbon-math to Python.
+Library to efficiently expose specific mathematical data structures (vectors, matrices, quaternions) from carbon-math to Python.
 
 ## 🛠️ Building 
 
