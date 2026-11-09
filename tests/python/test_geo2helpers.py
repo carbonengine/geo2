@@ -1,12 +1,17 @@
 # Copyright © 2014 CCP ehf.
 import unittest
 
-import testhelpers
-
 from geo2helpers import geo2helpers
 
-from geo2helpers.test import MATRIX_4x4
+MATRIX_16 = [1.0, 0.0, 0.0, 0.0,
+             0.0, 1.0, 0.0, 0.0,
+             0.0, 0.0, 1.0, 0.0,
+             0.0, 0.0, 0.0, 1.0]
 
+MATRIX_4x4 = ([1.0, 0.0, 0.0, 0.0],
+              [0.0, 1.0, 0.0, 0.0],
+              [0.0, 0.0, 1.0, 0.0],
+              [0.0, 0.0, 0.0, 1.0])
 
 class TestGeo2(unittest.TestCase):
     """Tests. Our main test is just that it imports."""
@@ -23,7 +28,7 @@ class TestGeo2(unittest.TestCase):
         # So we convert the result.
         ideal = tuple([tuple(e) for e in MATRIX_4x4])
 
-        testhelpers.assertEqualPretty(self, ideal, result)
+        self.assertEqual(ideal, result)
 
     def testComputeBoundingBoxMinMax(self):
         verts = [
