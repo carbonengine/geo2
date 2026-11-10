@@ -384,7 +384,6 @@ static PyNumberMethods VectorD_as_number = {
 	nullptr, /* nb_and */
 	nullptr, /* nb_xor */
 	nullptr, /* nb_or */
-	nullptr, /* nb_coerce */
 	nullptr, /* nb_int */
 	nullptr, /* nb_unused */
 	nullptr, /* nb_float */
@@ -402,7 +401,8 @@ static PyNumberMethods VectorD_as_number = {
 	VectorD_div, /* nb_true_divide */
 	nullptr, /* nb_inplace_floor_divide */
 	nullptr, /* nb_inplace_true_divide */
-	nullptr /* nb_index */
+	nullptr, /* nb_index */
+	nullptr /* nb_matrix_multiply */
 };
 
 static PySequenceMethods VectorD_as_sequence = {
