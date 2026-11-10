@@ -398,7 +398,7 @@ static PyNumberMethods VectorD_as_number = {
 	nullptr, /* nb_inplace_and */
 	nullptr, /* nb_inplace_xor */
 	nullptr, /* nb_inplace_or */
-	nullptr, /* nb_floor_divide */
+	VectorD_div, /* nb_floor_divide */
 	VectorD_div, /* nb_true_divide */
 	nullptr, /* nb_inplace_floor_divide */
 	nullptr, /* nb_inplace_true_divide */
@@ -462,8 +462,6 @@ static PyMethodDef VectorD_methods[] = {
 	{"__sub__", VectorD_sub, METH_O | METH_COEXIST,
 	"Subtract two Vectors."},
 	{"__mul__", VectorD_mul, METH_O | METH_COEXIST,
-	"Scale a Vector."},
-	{"__div__", VectorD_div, METH_O | METH_COEXIST,
 	"Scale a Vector."},
 	// Pickle support
 	{"__getinitargs__", (PyCFunction)VectorD_getinitargs, METH_NOARGS,
