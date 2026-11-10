@@ -3,11 +3,6 @@
 import sys
 import unittest
 
-class MockVectorD:
-    def __init__(self):
-        pass
-
-
 class MockGeo2:
     VectorD = None
     def __init__(self):
