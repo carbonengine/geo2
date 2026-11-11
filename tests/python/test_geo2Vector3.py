@@ -158,4 +158,3 @@ class TestCVector3(unittest.TestCase, TestVector3):
         t = tuple(a)
         self.assertEqual(t, (1.0, 2.0, 3.0))
 
-unittest.main()

@@ -9,4 +9,5 @@ try:
 except ImportError:
     pass
 
+
 sys.modules[__name__] = blue.LoadExtension("_geo2")

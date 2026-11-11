@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.31)
 
+option(BUILD_TESTING "Build tests. Enabled by default." ON)
+if(BUILD_TESTING)
+    list(APPEND VCPKG_MANIFEST_FEATURES "tests")
+endif()
+
 project(geo2)
 
 include(cmake/CcpTargetConfigurations.cmake)
@@ -24,6 +29,20 @@ set_target_properties(geo2 PROPERTIES OUTPUT_NAME "_geo2")
 
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    if(BUILD_TESTING)
+        include(CTest)
+        find_package(carbon-exefile-interpreter REQUIRED CONFIG)
+        # Interpreter must be created in this scope in order to create a POST_BUILD target for geo2.
+        ccp_prepare_interpreter(
+                TARGET geo2
+                BUILD_TYPE ${CMAKE_BUILD_TYPE}
+                COMMAND_OUT EXEFILE_INTERPRETER
+                PYTHONPATH_OUT PYTHONPATH
+                RUN_DIR $<TARGET_FILE_DIR:geo2>
+                BLUE_DIR_OUT BLUE_LOCATION_DIR
+        )
+        add_subdirectory(tests)
+    endif()
 
     option (INSTALL_TO_MONOLITH "Install this package to a perforce branch vendor folder - provided for backwards compatability" OFF)
     if(INSTALL_TO_MONOLITH)
